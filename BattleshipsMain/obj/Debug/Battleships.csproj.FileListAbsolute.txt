@@ -1,0 +1,15 @@
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\bin\Debug\Battleships.exe.config
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\bin\Debug\Battleships.exe
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\bin\Debug\Battleships.pdb
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.csproj.AssemblyReference.cache
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.Properties.Resources.resources
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.Views.ArrangingControl.resources
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.Views.BattleControl.resources
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.Views.FieldControl.resources
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.Views.FinishedControl.resources
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.Views.MainForm.resources
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.Views.StartControl.resources
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.csproj.GenerateResource.cache
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.csproj.CoreCompileInputs.cache
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.exe
+C:\Users\Zver\Desktop\Projects\battleships\Battleships\obj\Debug\Battleships.pdb
