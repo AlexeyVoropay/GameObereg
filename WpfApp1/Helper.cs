@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using WpfApp1.Models;
+using WpfApp1.Domain;
 
 namespace WpfApp1
 {
@@ -13,11 +13,9 @@ namespace WpfApp1
         {
             if (tag == null)
                 return null;
-            return new Position
-            {
-                X = int.Parse(tag.ToString()[0].ToString()),
-                Y = int.Parse(tag.ToString()[1].ToString()),
-            };
+            var x = int.Parse(tag.ToString()[0].ToString());
+            var y = int.Parse(tag.ToString()[1].ToString());
+            return new Position(x, y);
         }
 
         public static bool CheckMove(int[,] matrix, Position from, Position to)
@@ -77,7 +75,7 @@ namespace WpfApp1
                 return false;
             }
             // Проверка что король не двигаеться дальше 3 клеток
-                #warning СДЕЛАТЬ КРАСИВО 1!!!
+#warning СДЕЛАТЬ КРАСИВО 1!!!
             if (matrix[from.X, from.Y] == 3 &&
                 -3 <= from.X - to.X && from.X - to.X <= 3 &&
                 -3 <= from.Y - to.Y && from.Y - to.Y <= 3)
@@ -87,7 +85,7 @@ namespace WpfApp1
             }
             else
             {
-                #warning СДЕЛАТЬ КРАСИВО 2!!!
+#warning СДЕЛАТЬ КРАСИВО 2!!!
                 return matrix[from.X, from.Y] != 3;
             }
 

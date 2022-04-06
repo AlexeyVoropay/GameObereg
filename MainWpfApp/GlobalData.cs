@@ -1,4 +1,4 @@
-﻿using WpfApp1.Models;
+﻿using WpfApp1.Domain;
 
 namespace WpfApp1
 {

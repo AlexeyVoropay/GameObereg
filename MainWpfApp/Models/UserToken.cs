@@ -1,4 +1,4 @@
-﻿namespace WpfApp1.Models
+﻿namespace WpfApp1.Domain
 {
     using System;
     using System.Text.Json.Serialization;

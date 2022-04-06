@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
-using WpfApp1.Models;
+using WpfApp1.Domain;
 
 namespace WpfApp1
 {

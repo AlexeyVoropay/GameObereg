@@ -4,7 +4,7 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Input;
     using WpfApp1.Enums;
-    using WpfApp1.Models;
+    using WpfApp1.Domain;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -43,8 +43,8 @@
                 return GameStatus.EndGameWhiteWon;
             }
 
-            var gameCell01 = MainGameBoard.GetGameFieldCell(new Position { X = 0, Y = 1 });
-            var gameCell02 = MainGameBoard.GetGameFieldCell(new Position { X = 0, Y = 2 });
+            var gameCell01 = MainGameBoard.GetGameFieldCell(new Position(0, 1));
+            var gameCell02 = MainGameBoard.GetGameFieldCell(new Position(0, 2));
 
             // Фишка зажата в левом верхнем углу, по горизонтали
             if (gameCell01.IsChip && gameCell02.IsChip && 
@@ -61,7 +61,7 @@
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    var gameField = MainGameBoard.GetGameFieldCell(new Position { X = i, Y = j });
+                    var gameField = MainGameBoard.GetGameFieldCell(new Position(i, j));
                     var btn = ButtonsMatrix[i, j];
                     btn.FontSize = fontSize;
                     btn.Content = gameField.IsExit ? "⛋" : Helper.ConvertNumberToSymbol(MainGameBoard.MainMatrix[i, j]);
@@ -139,7 +139,7 @@
 
         private void btnMoveNumber000_Checked(object sender, RoutedEventArgs e)
         {
-            MainGameBoard.CheckThreeCells(new Position { X = 1, Y = 3 });
+            MainGameBoard.CheckThreeCells(new Position(1, 3));
             SetBoardValues();
         }
     }
