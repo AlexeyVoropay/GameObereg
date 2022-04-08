@@ -68,45 +68,50 @@
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
+            // Поиск пользователя по полю UserName
             var user = await userManager.FindByNameAsync(model.Username);
-            if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
-            {
-                var userRoles = await userManager.GetRolesAsync(user);
 
-                var authClaims = new List<Claim>
+            // Если пользователь не найден или не верный пароль,
+            // возвращаем результат, что пользователь не авторизован
+            if (user == null || !await userManager.CheckPasswordAsync(user, model.Password))
+                return Unauthorized();
+
+            // Права пользователя
+            var userRoles = await userManager.GetRolesAsync(user);
+
+            // Идентификационные поля записываемые в токен
+            var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
-                foreach (var userRole in userRoles)
-                {
-                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                }
-
-                var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-
-                var token = new JwtSecurityToken(
-                    issuer: _configuration["JWT:ValidIssuer"],
-                    audience: _configuration["JWT:ValidAudience"],
-                    expires: DateTime.Now.AddHours(3),
-                    claims: authClaims,
-                    signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                    );
-//{
-//  "access_token": "1/fFAGRNJru1FTz70BzhT3Zg",
-//  "expires_in": 3920,
-//  "token_type": "Bearer",
-//  "scope": "https://www.googleapis.com/auth/youtube.force-ssl",
-//  "refresh_token": "1//xEoDL4iW3cxlI7yDbSRFYNG01kVKM2C-259HOF2aQbI"
-//}
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo.ToLocalTime()
-                });
+            foreach (var userRole in userRoles)
+            {
+                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
             }
-            return Unauthorized();
+
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
+                expires: DateTime.Now.AddHours(3),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                );
+            //{
+            //  "access_token": "1/fFAGRNJru1FTz70BzhT3Zg",
+            //  "expires_in": 3920,
+            //  "token_type": "Bearer",
+            //  "scope": "https://www.googleapis.com/auth/youtube.force-ssl",
+            //  "refresh_token": "1//xEoDL4iW3cxlI7yDbSRFYNG01kVKM2C-259HOF2aQbI"
+            //}
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo.ToLocalTime()
+            });
         }
 
         [HttpPost]
